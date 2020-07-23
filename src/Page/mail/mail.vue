@@ -9,6 +9,7 @@
         <ul class="unit clear">
            <li v-for="item in value" :key="item.id" class="ellipsis">{{item.name}}</li>
         </ul>
+
       </li>
     </ul>
   </section>
