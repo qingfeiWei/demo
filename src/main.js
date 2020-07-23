@@ -3,6 +3,8 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import './assets/fonts/font-awesome/css/font-awesome.css';
+import './assets/fonts/Ionicons/css/ionicons.css';
 
 Vue.config.productionTip = false
 
