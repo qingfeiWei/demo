@@ -5,9 +5,8 @@ import App from './App'
 import router from './router'
 import './assets/fonts/font-awesome/css/font-awesome.css';
 import './assets/fonts/Ionicons/css/ionicons.css';
-
+import 'element-ui/lib/theme-chalk/index.css';
 Vue.config.productionTip = false
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

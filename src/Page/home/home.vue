@@ -1,130 +1,106 @@
 <template>
 
-  <section >
-    <ul class="mail clear">
-      <li v-for="(value, key, index) in units" :key="key" >
-        <h4 class="city_title">{{key}}
-          <span v-if="index == 0">（按字母排序）</span>
-        </h4>
-        <ul class="unit clear">
-          <li v-for="item in value" :key="item.id" class="ellipsis">{{item.name}}</li>
-        </ul>
-      </li>
-    </ul>
+  <section>
+    <section class="h-top">
+      <div class="h-city"> <h3>北京</h3><span>切换城市</span></div>
+      <div class="h-search">
+        <div class="s-btn"><span>搜索更多房源</span><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+      </div>
+    </section>
+    <section class="h-rank">
+      <h3>热门榜</h3>
+      <ul>
+        <li><p>热门榜</p><span>满分榜|无差评</span></li>
+        <li><p>热门榜</p><span>满分榜|无差评</span></li>
+        <li><p>热门榜</p><span>满分榜|无差评</span></li>
+        <li><p>热门榜</p><span>满分榜|无差评</span></li>
+        <li><p>热门榜</p><span>满分榜|无差评</span></li>
+        <li><p>热门榜</p><span>满分榜|无差评</span></li>
+      </ul>
+    </section>
+    <section class="h-list">
+      <h3>精选推荐</h3>
+      <el-card :body-style="{ padding: '0px' }">
+        <img src="" class="image">
+        <div style="padding: 14px;">
+          <span>好吃的汉堡</span>
+          <div class="bottom clearfix">
+            <time class="time">{{ currentDate }}</time>
+            <el-button type="text" class="button">操作按钮</el-button>
+          </div>
+        </div>
+      </el-card>
+    </section>
+    <foot></foot>
   </section>
 </template>
 
 <script>
-
+  import foot from '../../components/foot/foot';
   import {dictionaries} from "../../services/getData";
 
   export default {
     data() {
       return {
-        units: [],
-        dictionaries:[],
       }
     },
-
-    mounted() {
-      // 获取当前城市
-      fetch('/api/unit/list', {              //  /api既是上面跨域定义的文件地址
-        method: "post",                  //请求方式
-        headers: {                      //请求头
-          'Content-Type': 'application/json',
-          'Accept': 'application/json'
-        }
-      }).then(response => response.json())
-        // 拿值
-        .then(data => {
-          console.log(data)
-          this.units=data
-        })
-        .catch(err => {
-          console.log(err)
-        })
-      // 获取字典信息
-      dictionaries().then(res => {
-        console.log(res);
-      })
-
+    components: {
+      foot,
     },
+    mounted() {
+    },
+
   }
 
 </script>
 
 <style lang="scss" scoped>
-  @import '../../style/mixin';
-  .mail{
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    font-style: normal;
-    text-decoration: none;
-    border: none;
-    color: #333;
-    font-weight: normal;
-    font-family: "Microsoft Yahei";
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-font-smoothing: antialiased;
-    li{
-      margin-bottom: 0.4rem;
-      background-color: #fff;
-    }
-    h4{
-      color: #666;
-      font-weight: 400;
-      text-indent: 0.45rem;
-      border-top: 2px solid #e4e4e4;
-      border-bottom: 1px solid #e4e4e4;
-      @include font(0.55rem, 1.45rem, "Helvetica Neue");
-      text-align: left;
-      span{
-        @include sc(0.475rem, #999);
-        color: #999;
-      }
-    }
-    .unit{
-      padding: 0;
-      width: 100%;
+  .h-top {
+    display: flex;
+    .h-city {
       display: flex;
-      flex-flow: wrap;
-      li{
-        float: left;
-        text-align: center;
-        color: #3190e8;
-        border: 0.025rem solid #e4e4e4;
-        height: 1.75rem;
-        font: 0.6rem/1.75rem "Microsoft YaHei";
-        @include wh(100%, 1.75rem);
-        @include font(0.6rem, 1.75rem);
+      width: 70%;
+      align-items: center;
+      span {
+        font-size: 13px;
+        margin: 15px 10px 10px 10px;
       }
-      li:nth-of-type(4n){
-        border-right: none;
+    }
+
+    .h-search {
+      width: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .s-btn{
+        background: #cecece;
+        padding: 10px;
+        border-radius: 20px;
+        width: 120px;
+        font-size: 15px;
+        color: #fff;
+        i{
+          margin-left: 10px;
+        }
       }
     }
   }
-  .ellipsis {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .h-rank{
+    h3{
+      text-align: left;
+    }
+    ul{
+      display: flex;
+      list-style: none;
+      margin-block-start: 0px;
+      margin-block-end: 0px;
+      padding-inline-start: 0px;
+    }
   }
-  .clear {
-    zoom: 1;
+  .h-list{
+    h3{
+      text-align: left;
+    }
   }
-
-  .clear:after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-
-  ::-webkit-scrollbar {
-    width: 0px;
-    height: 0px;
-    background-color: #F5F5F5;
-  }
-
 
 </style>

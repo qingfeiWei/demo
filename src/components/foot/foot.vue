@@ -4,19 +4,19 @@
       <i class="fa fa-search" aria-hidden="true"></i>
       <span>搜索</span>
     </section>
-    <section class="guide_item">
+    <section @click = "gotoAddress('/unit')"  class="guide_item">
       <i class="fa fa-heart-o" aria-hidden="true"></i>
       <span>心愿单</span>
     </section>
     <section class="guide_item">
       <i class="icon ion-pinpoint"></i>
-      <span>目的地</span>
+      <router-link to="/home"> <span>目的地</span></router-link>
     </section>
     <section  class="guide_item">
       <i class="fa fa-comment-o" aria-hidden="true"></i>
       <span>收件箱</span>
     </section>
-    <section  class="guide_item">
+    <section @click = "gotoAddress('/person')" class="guide_item">
       <i class="fa fa-user-o" aria-hidden="true"></i>
       <span>登录</span>
     </section>
@@ -40,7 +40,9 @@
 
     },
     methods: {
-
+      gotoAddress:function(path){
+        this.$router.push(path)
+      }
     },
 
   }

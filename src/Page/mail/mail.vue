@@ -12,13 +12,14 @@
 
       </li>
     </ul>
+    <foot></foot>
   </section>
 </template>
 
 <script>
 
   import {dictionaries} from "../../services/getData";
-
+  import foot from '../../components/foot/foot';
   export default {
     data() {
       return {
@@ -26,7 +27,9 @@
         dictionaries:[],
       }
     },
-
+    components: {
+      foot,
+    },
     mounted() {
       // 获取当前城市
       fetch('/api/unit/list', {              //  /api既是上面跨域定义的文件地址
@@ -50,6 +53,7 @@
       })
 
     },
+
   }
 
 </script>
